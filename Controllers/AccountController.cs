@@ -32,6 +32,7 @@ namespace ClothingStoreApp.Controllers
             {
                 var user = new ApplicationUser
                 {
+                    Name = model.Email,
                     UserName = model.Email,
                     Email = model.Email
                 };

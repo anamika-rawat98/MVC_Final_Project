@@ -1,5 +1,6 @@
 using ClothingStoreApp.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClothingStoreApp.Data
 {
@@ -7,8 +8,12 @@ namespace ClothingStoreApp.Data
     {
         public static async Task Initialize(IServiceProvider serviceProvider)
         {
+            var context = serviceProvider.GetRequiredService<ApplicationDbContext>();
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+            await context.Database.MigrateAsync();
+            await EnsureNameColumnExistsAsync(context);
 
             // Create roles if they don't exist
             string[] roleNames = { "Admin", "Manager", "User" };
@@ -29,6 +34,7 @@ namespace ClothingStoreApp.Data
             {
                 adminUser = new ApplicationUser
                 {
+                    Name = "System Admin",
                     UserName = adminEmail,
                     Email = adminEmail,
                     EmailConfirmed = true
@@ -50,6 +56,7 @@ namespace ClothingStoreApp.Data
             {
                 managerUser = new ApplicationUser
                 {
+                    Name = "Store Manager",
                     UserName = managerEmail,
                     Email = managerEmail,
                     EmailConfirmed = true
@@ -71,6 +78,7 @@ namespace ClothingStoreApp.Data
             {
                 regularUser = new ApplicationUser
                 {
+                    Name = "Store User",
                     UserName = userEmail,
                     Email = userEmail,
                     EmailConfirmed = true
@@ -82,6 +90,37 @@ namespace ClothingStoreApp.Data
                 {
                     await userManager.AddToRoleAsync(regularUser, "User");
                 }
+            }
+        }
+
+        private static async Task EnsureNameColumnExistsAsync(ApplicationDbContext context)
+        {
+            await using var connection = context.Database.GetDbConnection();
+            if (connection.State != System.Data.ConnectionState.Open)
+            {
+                await connection.OpenAsync();
+            }
+
+            await using var command = connection.CreateCommand();
+            command.CommandText = "PRAGMA table_info('AspNetUsers');";
+
+            await using var reader = await command.ExecuteReaderAsync();
+            var hasNameColumn = false;
+            while (await reader.ReadAsync())
+            {
+                if (string.Equals(reader["name"]?.ToString(), "Name", StringComparison.OrdinalIgnoreCase))
+                {
+                    hasNameColumn = true;
+                    break;
+                }
+            }
+
+            await reader.DisposeAsync();
+
+            if (!hasNameColumn)
+            {
+                await context.Database.ExecuteSqlRawAsync(
+                    "ALTER TABLE AspNetUsers ADD COLUMN Name TEXT NULL;");
             }
         }
     }

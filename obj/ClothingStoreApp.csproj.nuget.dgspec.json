@@ -1,25 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "/Users/anamikarawat/Desktop/🎒Conestoga 🎒/Semester 2/MS Web Technologies(dot net)/Final Group Project/ClothingStoreApp/ClothingStoreApp.csproj": {}
+    "C:\\Users\\shaik\\Final_github\\MVC_Final_Project\\ClothingStoreApp.csproj": {}
   },
   "projects": {
-    "/Users/anamikarawat/Desktop/🎒Conestoga 🎒/Semester 2/MS Web Technologies(dot net)/Final Group Project/ClothingStoreApp/ClothingStoreApp.csproj": {
+    "C:\\Users\\shaik\\Final_github\\MVC_Final_Project\\ClothingStoreApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/anamikarawat/Desktop/🎒Conestoga 🎒/Semester 2/MS Web Technologies(dot net)/Final Group Project/ClothingStoreApp/ClothingStoreApp.csproj",
+        "projectUniqueName": "C:\\Users\\shaik\\Final_github\\MVC_Final_Project\\ClothingStoreApp.csproj",
         "projectName": "ClothingStoreApp",
-        "projectPath": "/Users/anamikarawat/Desktop/🎒Conestoga 🎒/Semester 2/MS Web Technologies(dot net)/Final Group Project/ClothingStoreApp/ClothingStoreApp.csproj",
-        "packagesPath": "/Users/anamikarawat/.nuget/packages/",
-        "outputPath": "/Users/anamikarawat/Desktop/🎒Conestoga 🎒/Semester 2/MS Web Technologies(dot net)/Final Group Project/ClothingStoreApp/obj/",
+        "projectPath": "C:\\Users\\shaik\\Final_github\\MVC_Final_Project\\ClothingStoreApp.csproj",
+        "packagesPath": "C:\\Users\\shaik\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\shaik\\Final_github\\MVC_Final_Project\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/anamikarawat/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\shaik\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,7 +45,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.100"
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net10.0": {
@@ -84,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.102/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.200-preview.0.26103.119/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
