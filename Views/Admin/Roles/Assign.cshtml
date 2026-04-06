@@ -1,0 +1,69 @@
+@model AdminRoleAssignmentViewModel
+
+@{
+    ViewData["Title"] = "Assign Roles";
+}
+
+<h2>Assign Roles</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Assign" method="post" class="mb-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="UserId" class="form-label"></label>
+                <select asp-for="UserId" asp-items="Model.Users" class="form-select">
+                    <option value="">Select User</option>
+                </select>
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="RoleName" class="form-label"></label>
+                <select asp-for="RoleName" asp-items="Model.Roles" class="form-select">
+                    <option value="">Select Role</option>
+                </select>
+                <span asp-validation-for="RoleName" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Assign Role</button>
+            <a asp-action="Index" class="btn btn-secondary">Back</a>
+        </form>
+    </div>
+</div>
+
+<h4>Current User Roles</h4>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.CurrentAssignments)
+    {
+        <tr>
+            <td>@item.UserName</td>
+            <td>@item.Email</td>
+            <td>@item.RoleName</td>
+            <td>
+                <form asp-action="RemoveRoleFromUser" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="userId" value="@item.UserId" />
+                    <input type="hidden" name="roleName" value="@item.RoleName" />
+                    <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,53 @@
+@model IEnumerable<AdminUserIndexViewModel>
+
+@{
+    ViewData["Title"] = "Manage Users";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Manage Users</h2>
+    <a asp-action="Create" class="btn btn-primary">Create User</a>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Name</td>
+            <td>@user.Email</td>
+            <td>@user.Roles</td>
+            <td>@(user.IsLockedOut ? "Locked" : "Active")</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@user.Id" class="btn btn-sm btn-warning">Edit</a>
+                <a asp-action="Delete" asp-route-id="@user.Id" class="btn btn-sm btn-danger">Delete</a>
+                @if (!user.IsAdmin && user.IsLockedOut)
+                {
+                    <form asp-action="Unlock" method="post" class="d-inline">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@user.Id" />
+                        <button type="submit" class="btn btn-sm btn-success">Unlock</button>
+                    </form>
+                }
+                else if (!user.IsAdmin)
+                {
+                    <form asp-action="Lock" method="post" class="d-inline">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@user.Id" />
+                        <button type="submit" class="btn btn-sm btn-secondary">Lock</button>
+                    </form>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

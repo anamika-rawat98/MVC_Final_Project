@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace ClothingStoreApp.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        // Additional properties can be added here if needed
-        // For example: public string FirstName { get; set; }
-        // public string LastName { get; set; }
+        [StringLength(100)]
+        public string? Name { get; set; }
     }
 }
