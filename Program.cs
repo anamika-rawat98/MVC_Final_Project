@@ -1,12 +1,18 @@
 using ClothingStoreApp.Data;
 using ClothingStoreApp.Models;
+using ClothingStoreApp.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
+builder.Logging.AddEventSourceLogger();
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<AuditLogService>();
 
 // Configure Entity Framework with SQLite
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

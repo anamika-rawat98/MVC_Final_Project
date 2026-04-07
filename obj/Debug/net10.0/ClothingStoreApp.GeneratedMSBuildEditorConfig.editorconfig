@@ -19,89 +19,109 @@ build_property.TargetFrameworkIdentifier = .NETCoreApp
 build_property.TargetFrameworkVersion = v10.0
 build_property.RootNamespace = ClothingStoreApp
 build_property.RootNamespace = ClothingStoreApp
-build_property.ProjectDir = C:\Users\shaik\Final_github\MVC_Final_Project\
+build_property.ProjectDir = C:\Users\sukhp\OneDrive\Desktop\part 2\project_final_mvc\MVC_Final_Project\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\shaik\Final_github\MVC_Final_Project
+build_property.MSBuildProjectDirectory = C:\Users\sukhp\OneDrive\Desktop\part 2\project_final_mvc\MVC_Final_Project
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/shaik/Final_github/MVC_Final_Project/Views/Account/AccessDenied.cshtml]
+[C:/Users/sukhp/OneDrive/Desktop/part 2/project_final_mvc/MVC_Final_Project/Views/Account/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shaik/Final_github/MVC_Final_Project/Views/Account/Lockout.cshtml]
+[C:/Users/sukhp/OneDrive/Desktop/part 2/project_final_mvc/MVC_Final_Project/Views/Account/Lockout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2Nrb3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shaik/Final_github/MVC_Final_Project/Views/Account/Login.cshtml]
+[C:/Users/sukhp/OneDrive/Desktop/part 2/project_final_mvc/MVC_Final_Project/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shaik/Final_github/MVC_Final_Project/Views/Account/Register.cshtml]
+[C:/Users/sukhp/OneDrive/Desktop/part 2/project_final_mvc/MVC_Final_Project/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shaik/Final_github/MVC_Final_Project/Views/Admin/Roles/Assign.cshtml]
+[C:/Users/sukhp/OneDrive/Desktop/part 2/project_final_mvc/MVC_Final_Project/Views/AdminAuditLogs/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5BdWRpdExvZ3NcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sukhp/OneDrive/Desktop/part 2/project_final_mvc/MVC_Final_Project/Views/AdminOrders/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5PcmRlcnNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sukhp/OneDrive/Desktop/part 2/project_final_mvc/MVC_Final_Project/Views/Admin/Roles/Assign.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUm9sZXNcQXNzaWduLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shaik/Final_github/MVC_Final_Project/Views/Admin/Roles/Create.cshtml]
+[C:/Users/sukhp/OneDrive/Desktop/part 2/project_final_mvc/MVC_Final_Project/Views/Admin/Roles/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUm9sZXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shaik/Final_github/MVC_Final_Project/Views/Admin/Roles/Edit.cshtml]
+[C:/Users/sukhp/OneDrive/Desktop/part 2/project_final_mvc/MVC_Final_Project/Views/Admin/Roles/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUm9sZXNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shaik/Final_github/MVC_Final_Project/Views/Admin/Roles/Index.cshtml]
+[C:/Users/sukhp/OneDrive/Desktop/part 2/project_final_mvc/MVC_Final_Project/Views/Admin/Roles/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUm9sZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shaik/Final_github/MVC_Final_Project/Views/Admin/Users/Create.cshtml]
+[C:/Users/sukhp/OneDrive/Desktop/part 2/project_final_mvc/MVC_Final_Project/Views/Admin/Users/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlcnNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shaik/Final_github/MVC_Final_Project/Views/Admin/Users/Delete.cshtml]
+[C:/Users/sukhp/OneDrive/Desktop/part 2/project_final_mvc/MVC_Final_Project/Views/Admin/Users/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlcnNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shaik/Final_github/MVC_Final_Project/Views/Admin/Users/Edit.cshtml]
+[C:/Users/sukhp/OneDrive/Desktop/part 2/project_final_mvc/MVC_Final_Project/Views/Admin/Users/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlcnNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shaik/Final_github/MVC_Final_Project/Views/Admin/Users/Index.cshtml]
+[C:/Users/sukhp/OneDrive/Desktop/part 2/project_final_mvc/MVC_Final_Project/Views/Admin/Users/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlcnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shaik/Final_github/MVC_Final_Project/Views/Home/Index.cshtml]
+[C:/Users/sukhp/OneDrive/Desktop/part 2/project_final_mvc/MVC_Final_Project/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shaik/Final_github/MVC_Final_Project/Views/Home/Privacy.cshtml]
+[C:/Users/sukhp/OneDrive/Desktop/part 2/project_final_mvc/MVC_Final_Project/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shaik/Final_github/MVC_Final_Project/Views/Shared/Error.cshtml]
+[C:/Users/sukhp/OneDrive/Desktop/part 2/project_final_mvc/MVC_Final_Project/Views/ManagerOrders/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlck9yZGVyc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sukhp/OneDrive/Desktop/part 2/project_final_mvc/MVC_Final_Project/Views/Orders/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sukhp/OneDrive/Desktop/part 2/project_final_mvc/MVC_Final_Project/Views/Orders/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sukhp/OneDrive/Desktop/part 2/project_final_mvc/MVC_Final_Project/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shaik/Final_github/MVC_Final_Project/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/sukhp/OneDrive/Desktop/part 2/project_final_mvc/MVC_Final_Project/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shaik/Final_github/MVC_Final_Project/Views/_ViewImports.cshtml]
+[C:/Users/sukhp/OneDrive/Desktop/part 2/project_final_mvc/MVC_Final_Project/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shaik/Final_github/MVC_Final_Project/Views/_ViewStart.cshtml]
+[C:/Users/sukhp/OneDrive/Desktop/part 2/project_final_mvc/MVC_Final_Project/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shaik/Final_github/MVC_Final_Project/Views/Shared/_Layout.cshtml]
+[C:/Users/sukhp/OneDrive/Desktop/part 2/project_final_mvc/MVC_Final_Project/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-faxckz5nx3

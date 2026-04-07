@@ -19,6 +19,8 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color: #ffffff;
+  color: #1f2937;
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
@@ -28,4 +30,142 @@ body {
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
+}
+
+.navbar {
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+
+.navbar-brand {
+  font-size: 1.9rem;
+  font-weight: 600;
+}
+
+.nav-link {
+  font-size: 1.15rem;
+}
+
+.navbar-text {
+  font-size: 1.1rem;
+}
+
+.page-shell {
+  padding-top: 0.5rem;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.page-title {
+  margin: 0;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.page-subtitle {
+  margin: 0.5rem 0 0;
+  color: #6b7280;
+  font-size: 1.05rem;
+}
+
+.table-card {
+  border: 1px solid #d8dee9;
+  border-radius: 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+.simple-card {
+  height: 100%;
+  border: 1px solid #d8dee9;
+  background: #fff;
+  box-shadow: none;
+}
+
+.simple-card .card-body {
+  padding: 1.75rem;
+}
+
+.table-clean {
+  margin-bottom: 0;
+}
+
+.table-clean thead th {
+  border-bottom-width: 1px;
+  padding: 1rem 0.85rem;
+  color: #111827;
+  font-size: 1.1rem;
+}
+
+.table-clean tbody td {
+  padding: 0.95rem 0.85rem;
+  vertical-align: middle;
+}
+
+.table-clean tbody tr:nth-child(odd) {
+  background-color: #f3f4f6;
+}
+
+.status-pill {
+  display: inline-block;
+  padding: 0.28rem 0.7rem;
+  border-radius: 0.45rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+}
+
+.status-active,
+.status-completed {
+  background-color: #198754;
+}
+
+.status-pending {
+  background-color: #6c757d;
+}
+
+.status-processing {
+  background-color: #0d6efd;
+}
+
+.status-cancelled,
+.status-locked {
+  background-color: #dc3545;
+}
+
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.content-form {
+  max-width: 720px;
+}
+
+.form-panel {
+  max-width: 720px;
+  background: #fff;
+}
+
+.content-form .form-control,
+.content-form .form-select {
+  min-height: 44px;
+}
+
+.form-panel .form-control,
+.form-panel .form-select {
+  min-height: 44px;
+}
+
+.alert {
+  border-radius: 0.4rem;
 }

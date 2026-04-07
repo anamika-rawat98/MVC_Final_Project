@@ -5,7 +5,7 @@
 }
 
 <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2>Manage Users</h2>
+    <h2>User Management</h2>
     <a asp-action="Create" class="btn btn-primary">Create User</a>
 </div>
 
@@ -29,7 +29,10 @@
             <td>@(user.IsLockedOut ? "Locked" : "Active")</td>
             <td>
                 <a asp-action="Edit" asp-route-id="@user.Id" class="btn btn-sm btn-warning">Edit</a>
-                <a asp-action="Delete" asp-route-id="@user.Id" class="btn btn-sm btn-danger">Delete</a>
+                @if (!user.IsAdmin)
+                {
+                    <a asp-action="Delete" asp-route-id="@user.Id" class="btn btn-sm btn-danger">Delete</a>
+                }
                 @if (!user.IsAdmin && user.IsLockedOut)
                 {
                     <form asp-action="Unlock" method="post" class="d-inline">
