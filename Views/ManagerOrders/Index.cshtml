@@ -1,0 +1,74 @@
+@model ManagerOrdersIndexViewModel
+
+@{
+    ViewData["Title"] = "Manage Orders";
+}
+
+<h2 class="mb-3">Orders</h2>
+
+@if (TempData["OrderSuccess"] is string successMessage)
+{
+    <div class="alert alert-success">@successMessage</div>
+}
+
+@if (TempData["OrderError"] is string errorMessage)
+{
+    <div class="alert alert-danger">@errorMessage</div>
+}
+
+@if (!Model.Orders.Any())
+{
+    <div class="alert alert-info">No orders are available yet.</div>
+}
+else
+{
+    <table class="table table-bordered table-striped align-middle">
+        <thead>
+            <tr>
+                <th>Order #</th>
+                <th>Customer</th>
+                <th>Product</th>
+                <th>Total</th>
+                <th>Order Date</th>
+                <th>Notes</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var order in Model.Orders)
+        {
+            <tr>
+                <td>@order.Id</td>
+                <td>
+                    <strong>@order.CustomerName</strong><br />
+                    <span class="text-muted">@order.CustomerEmail</span>
+                </td>
+                <td>@order.ProductName (@order.Quantity x @order.Price.ToString("C"))</td>
+                <td>@order.Total.ToString("C")</td>
+                <td>@order.OrderDate.ToString("g")</td>
+                <td>@(string.IsNullOrWhiteSpace(order.Notes) ? "-" : order.Notes)</td>
+                <td>
+                    <form asp-action="UpdateStatus" method="post" class="d-flex gap-2">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@order.Id" />
+                        <select name="status" class="form-select form-select-sm">
+                            @foreach (var status in Model.StatusOptions)
+                            {
+                                if (status.Value == order.Status)
+                                {
+                                    <option value="@status.Value" selected>@status.Text</option>
+                                }
+                                else
+                                {
+                                    <option value="@status.Value">@status.Text</option>
+                                }
+                            }
+                        </select>
+                        <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

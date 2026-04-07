@@ -1,4 +1,5 @@
 using ClothingStoreApp.Models;
+using ClothingStoreApp.Services;
 using ClothingStoreApp.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,13 +10,16 @@ namespace ClothingStoreApp.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly AuditLogService _auditLogService;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager,
+            AuditLogService auditLogService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _auditLogService = auditLogService;
         }
 
         [HttpGet]
@@ -41,7 +45,13 @@ namespace ClothingStoreApp.Controllers
 
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, "User");
                     await _signInManager.SignInAsync(user, isPersistent: false);
+                    await _auditLogService.LogAsync(
+                        user.Id,
+                        "Registered Account",
+                        $"Registered a new account for {user.Email}.",
+                        "User");
                     return RedirectToAction("Index", "Home");
                 }
 
@@ -77,6 +87,16 @@ namespace ClothingStoreApp.Controllers
 
                 if (result.Succeeded)
                 {
+                    var user = await _userManager.FindByEmailAsync(model.Email);
+                    if (user != null)
+                    {
+                        await _auditLogService.LogAsync(
+                            user.Id,
+                            "Logged In",
+                            $"Logged in to the system using {(model.RememberMe ? "Remember Me" : "session")} authentication.",
+                            "User");
+                    }
+
                     return RedirectToLocal(returnUrl);
                 }
 
@@ -95,6 +115,16 @@ namespace ClothingStoreApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
+            var userId = _userManager.GetUserId(User);
+            if (!string.IsNullOrWhiteSpace(userId))
+            {
+                await _auditLogService.LogAsync(
+                    userId,
+                    "Logged Out",
+                    "Logged out of the system.",
+                    "User");
+            }
+
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }

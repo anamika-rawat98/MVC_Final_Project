@@ -1,0 +1,41 @@
+@model IEnumerable<AdminAuditLogViewModel>
+
+@{
+    ViewData["Title"] = "Audit Logs";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Audit Logs</h2>
+    <span class="text-muted">Showing latest @Model.Count()</span>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No audit records are available yet.</div>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>User</th>
+                <th>Action</th>
+                <th>Details</th>
+                <th>Entity</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var log in Model)
+        {
+            <tr>
+                <td>@log.Timestamp.ToString("yyyy-MM-dd")<br />@log.Timestamp.ToString("HH:mm:ss")</td>
+                <td>@log.UserEmail</td>
+                <td>@log.Action</td>
+                <td>@log.Details</td>
+                <td>@(string.IsNullOrWhiteSpace(log.EntityType) ? "-" : $"{log.EntityType} #{log.EntityId}")</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

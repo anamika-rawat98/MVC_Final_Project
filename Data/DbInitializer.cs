@@ -14,6 +14,7 @@ namespace ClothingStoreApp.Data
 
             await context.Database.MigrateAsync();
             await EnsureNameColumnExistsAsync(context);
+            await EnsureOrderStatusColumnExistsAsync(context);
 
             // Create roles if they don't exist
             string[] roleNames = { "Admin", "Manager", "User" };
@@ -121,6 +122,37 @@ namespace ClothingStoreApp.Data
             {
                 await context.Database.ExecuteSqlRawAsync(
                     "ALTER TABLE AspNetUsers ADD COLUMN Name TEXT NULL;");
+            }
+        }
+
+        private static async Task EnsureOrderStatusColumnExistsAsync(ApplicationDbContext context)
+        {
+            await using var connection = context.Database.GetDbConnection();
+            if (connection.State != System.Data.ConnectionState.Open)
+            {
+                await connection.OpenAsync();
+            }
+
+            await using var command = connection.CreateCommand();
+            command.CommandText = "PRAGMA table_info('Orders');";
+
+            await using var reader = await command.ExecuteReaderAsync();
+            var hasStatusColumn = false;
+            while (await reader.ReadAsync())
+            {
+                if (string.Equals(reader["name"]?.ToString(), "Status", StringComparison.OrdinalIgnoreCase))
+                {
+                    hasStatusColumn = true;
+                    break;
+                }
+            }
+
+            await reader.DisposeAsync();
+
+            if (!hasStatusColumn)
+            {
+                await context.Database.ExecuteSqlRawAsync(
+                    "ALTER TABLE Orders ADD COLUMN Status TEXT NOT NULL DEFAULT 'Pending';");
             }
         }
     }

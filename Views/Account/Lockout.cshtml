@@ -2,7 +2,15 @@
     ViewData["Title"] = "Locked out";
 }
 
-<header>
-    <h2>@ViewData["Title"]</h2>
-    <p class="text-danger">This account has been locked out, please try again later.</p>
-</header>
+<div class="page-shell">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Locked Out</h1>
+            <p class="page-subtitle">This account has been locked because of failed login attempts.</p>
+        </div>
+    </div>
+
+    <div class="alert alert-danger form-panel">
+        Please try again later or contact an administrator.
+    </div>
+</div>

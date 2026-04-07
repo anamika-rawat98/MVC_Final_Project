@@ -3,6 +3,22 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ClothingStoreApp.Models
 {
+    public static class OrderStatuses
+    {
+        public const string Pending = "Pending";
+        public const string Processing = "Processing";
+        public const string Completed = "Completed";
+        public const string Cancelled = "Cancelled";
+
+        public static readonly string[] All =
+        {
+            Pending,
+            Processing,
+            Completed,
+            Cancelled
+        };
+    }
+
     public class Order
     {
         [Key]
@@ -26,6 +42,10 @@ namespace ClothingStoreApp.Models
         public int Quantity { get; set; }
 
         public DateTime OrderDate { get; set; } = DateTime.Now;
+
+        [Required]
+        [StringLength(50)]
+        public string Status { get; set; } = OrderStatuses.Pending;
 
         [StringLength(500)]
         public string? Notes { get; set; }

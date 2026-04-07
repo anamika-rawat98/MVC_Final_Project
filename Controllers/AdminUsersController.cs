@@ -1,4 +1,5 @@
 using ClothingStoreApp.Models;
+using ClothingStoreApp.Services;
 using ClothingStoreApp.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -14,13 +15,16 @@ namespace ClothingStoreApp.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly AuditLogService _auditLogService;
 
         public AdminUsersController(
             UserManager<ApplicationUser> userManager,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager,
+            AuditLogService auditLogService)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _auditLogService = auditLogService;
         }
 
         [HttpGet]
@@ -92,6 +96,11 @@ namespace ClothingStoreApp.Controllers
                 await PopulateRolesAsync(model.Roles);
                 return View("~/Views/Admin/Users/Create.cshtml", model);
             }
+
+            await LogAdminActionAsync(
+                "Created User",
+                $"Created user {user.Email} with role {model.SelectedRole}.",
+                "User");
 
             return RedirectToAction(nameof(Index));
         }
@@ -189,6 +198,11 @@ namespace ClothingStoreApp.Controllers
                 }
             }
 
+            await LogAdminActionAsync(
+                "Updated User",
+                $"Updated user {user.Email} and assigned role {model.SelectedRole}.",
+                "User");
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -204,6 +218,7 @@ namespace ClothingStoreApp.Controllers
 
             user.LockoutEnd = DateTimeOffset.UtcNow.AddYears(100);
             await _userManager.UpdateAsync(user);
+            await LogAdminActionAsync("Locked User", $"Locked user {user.Email}.", "User");
 
             return RedirectToAction(nameof(Index));
         }
@@ -220,6 +235,7 @@ namespace ClothingStoreApp.Controllers
 
             await _userManager.SetLockoutEndDateAsync(user, null);
             await _userManager.ResetAccessFailedCountAsync(user);
+            await LogAdminActionAsync("Unlocked User", $"Unlocked user {user.Email}.", "User");
 
             return RedirectToAction(nameof(Index));
         }
@@ -271,6 +287,8 @@ namespace ClothingStoreApp.Controllers
                 return View("~/Views/Admin/Users/Delete.cshtml", model);
             }
 
+            await LogAdminActionAsync("Deleted User", $"Deleted user {user.Email}.", "User");
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -289,6 +307,15 @@ namespace ClothingStoreApp.Controllers
             foreach (var error in result.Errors)
             {
                 ModelState.AddModelError(string.Empty, error.Description);
+            }
+        }
+
+        private async Task LogAdminActionAsync(string action, string details, string entityType)
+        {
+            var adminId = _userManager.GetUserId(User);
+            if (adminId != null)
+            {
+                await _auditLogService.LogAsync(adminId, action, details, entityType);
             }
         }
     }

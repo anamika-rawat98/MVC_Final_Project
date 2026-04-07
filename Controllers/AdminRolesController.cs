@@ -1,4 +1,5 @@
 using ClothingStoreApp.Models;
+using ClothingStoreApp.Services;
 using ClothingStoreApp.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -14,13 +15,16 @@ namespace ClothingStoreApp.Controllers
     {
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly AuditLogService _auditLogService;
 
         public AdminRolesController(
             RoleManager<IdentityRole> roleManager,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            AuditLogService auditLogService)
         {
             _roleManager = roleManager;
             _userManager = userManager;
+            _auditLogService = auditLogService;
         }
 
         [HttpGet]
@@ -74,6 +78,7 @@ namespace ClothingStoreApp.Controllers
                 return View("~/Views/Admin/Roles/Create.cshtml", model);
             }
 
+            await LogAdminActionAsync("Created Role", $"Created role {model.Name}.", "Role");
             return RedirectToAction(nameof(Index));
         }
 
@@ -120,6 +125,7 @@ namespace ClothingStoreApp.Controllers
                 return View("~/Views/Admin/Roles/Edit.cshtml", model);
             }
 
+            await LogAdminActionAsync("Updated Role", $"Updated role to {model.Name}.", "Role");
             return RedirectToAction(nameof(Index));
         }
 
@@ -137,6 +143,10 @@ namespace ClothingStoreApp.Controllers
             if (!result.Succeeded)
             {
                 TempData["RoleError"] = string.Join(" ", result.Errors.Select(e => e.Description));
+            }
+            else
+            {
+                await LogAdminActionAsync("Deleted Role", $"Deleted role {role.Name}.", "Role");
             }
 
             return RedirectToAction(nameof(Index));
@@ -182,6 +192,11 @@ namespace ClothingStoreApp.Controllers
                     await PopulateAssignmentListsAsync(model);
                     return View("~/Views/Admin/Roles/Assign.cshtml", model);
                 }
+
+                await LogAdminActionAsync(
+                    "Assigned Role",
+                    $"Assigned role {model.RoleName} to user {user!.Email}.",
+                    "Role");
             }
 
             return RedirectToAction(nameof(Assign));
@@ -198,6 +213,7 @@ namespace ClothingStoreApp.Controllers
             }
 
             await _userManager.RemoveFromRoleAsync(user, roleName);
+            await LogAdminActionAsync("Removed Role", $"Removed role {roleName} from user {user.Email}.", "Role");
             return RedirectToAction(nameof(Assign));
         }
 
@@ -246,6 +262,15 @@ namespace ClothingStoreApp.Controllers
             foreach (var error in result.Errors)
             {
                 ModelState.AddModelError(string.Empty, error.Description);
+            }
+        }
+
+        private async Task LogAdminActionAsync(string action, string details, string entityType)
+        {
+            var adminId = _userManager.GetUserId(User);
+            if (adminId != null)
+            {
+                await _auditLogService.LogAsync(adminId, action, details, entityType);
             }
         }
     }
